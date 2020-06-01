@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "angulartask"
+    }
+  },
+  "defaultProject": "angulartask",
+  "cli": {
+    "analytics": "c962516c-e874-44ca-acb1-928991b79ea6"
+  }
 }

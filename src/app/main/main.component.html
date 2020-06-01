@@ -1,0 +1,158 @@
+<div class="container">
+  <h1>{{  'main.title' | translate }}</h1>
+  <hr>  
+
+  <mat-form-field>
+    <mat-label>{{  'main.timezone' | translate }}</mat-label>
+    <mat-select >
+      <mat-option 
+        *ngFor="let timezone of timezones" 
+        [value]="timezone"
+        >
+        {{timezone.value}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <ul>   
+    <li><button class="lang_btn" (click)="selectLang('en')"> English </button></li>
+    <li>|</li>
+    <li><button class="lang_btn" (click)="selectLang('hi')"> Hindi </button></li>
+  </ul>
+  <!-- <div class="12hr-example">
+    <input placeholder="12hr format (default settings)" aria-label="12hr format" [ngxTimepicker]="default" readonly>
+    <ngx-material-timepicker #default></ngx-material-timepicker>
+  </div> -->
+  <!-- Full Name, Meeting Date, Start time and End time.  -->
+  <br>
+  <form #f="ngForm" (ngSubmit) = "submit(f)">
+    <div class="form-group">    
+      <mat-form-field >
+        <mat-label>{{  'main.fullname' | translate }}</mat-label>
+        <input matInput 
+               ngModel 
+               name="fullName" 
+               #fullName="ngModel"              
+               required
+              >  
+          <div class="alert alert-danger" *ngIf="fullName.touched && !fullName.valid">Name is required</div>
+      </mat-form-field>      
+      <br>
+      <mat-form-field>
+        <mat-label>{{ 'main.choosedate' | translate }}</mat-label>
+        <input matInput 
+               ngModel 
+               name="date" 
+               #date="ngModel" 
+               [min]="minDate" 
+               [max]="maxDate" 
+               [matDatepicker]="picker" >
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <br>
+    
+      <mat-label>{{ 'main.starttime' | translate }}</mat-label>&nbsp;
+      <mat-form-field class="time_field">  
+        <mat-label>HH</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let hour of hours' ngModel name="shour" #shour="ngModel" [value]='hour' ngDefaultControl >{{hour}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="time_field">
+      <mat-label>MM</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let min of minutes' ngModel name="smin" #smin="ngModel" [value]='min' ngDefaultControl >{{min}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    
+      <mat-form-field class="time_field">
+        <mat-label>SS</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let min of minutes' ngModel name="ssec" #ssec="ngModel" [value]='min' ngDefaultControl >{{min}}</mat-option>
+        </mat-select>
+      </mat-form-field>  
+      <br>
+      
+      <mat-label>{{  'main.endtime' | translate }}</mat-label>&nbsp;
+      <mat-form-field class="time_field">
+        <mat-label>HH</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let hour of hours' ngModel name="ehour" #ehour="ngModel" [value]='hour' ngDefaultControl >{{hour}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="time_field">
+        <mat-label>MM</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let min of minutes' ngModel name="emin" #emin="ngModel" [value]='min' ngDefaultControl >{{min}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="time_field">
+        <mat-label>SS</mat-label>
+        <mat-select>
+          <mat-option *ngFor='let min of minutes' ngModel name="esec" #esec="ngModel" [value]='min' ngDefaultControl >{{min}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <br>
+      <button mat-button color="primary">
+        {{  'main.submit' | translate }}
+      </button>
+   </div>
+  </form>
+<!--   
+  
+</div>
+<div>
+  <form #f="ngForm">
+    <div class="form-group">
+      <label>Select tenant/device time zone: </label>
+      <select name="timeZone" [ngModel]="selectedTz" (ngModelChange)="timeZoneChanged($event)">
+        <option *ngFor="let tz of tzNames" [value]="tz">
+          {{ tz }}
+        </option>
+      </select><span> {{ tzNames.length }}</span>
+    </div>
+    <div class="form-group">
+      <label>Select locale: </label>
+      <select name="locale" [ngModel]="selectedLocale" (ngModelChange)="changeLocale($event)">
+        <option *ngFor="let locale of locales" [value]="locale">
+          {{ locale }}
+        </option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Select display time zone: </label>   
+      <select name="displayTimeZone" [ngModel]="displayTz" (ngModelChange)="changeDisplayTz($event)">
+        <option [value]="selectedTz">Tenant/Device</option>
+        <option [value]="userTz">User</option>
+        <option [value]="utcTz">UTC</option>
+      </select>
+    </div>
+  </form>
+</div>
+<br/>
+<div>Tenant/Device time zone: <strong>{{ selectedTz }}</strong></div>
+<div>User's time zone: <strong>{{ userTz }}</strong></div>
+<br/>
+<div>UTC Date: {{ date }}</div>
+<br/>
+<div>Date displayed in: <strong>{{ displayTz }}</strong></div>
+<div>Unformated: <strong>{{ a }}</strong></div>
+<div>Formated: <strong>{{ aFormat }}</strong></div>
+<div>Date formated: <strong>{{ aDateFormat }}</strong></div>
+<div>Time formated: <strong>{{ aTimeFormat }}</strong></div>
+<div>Special format: <strong>{{ aSpecialFormat }}</strong></div>
+<br/>
+<div>
+  <div *ngFor="let form of allFormats">
+    {{ formats(form) }}
+  </div>
+</div>
+<br/>
+<div>
+ <div>Tenant from UTC: {{ tenantDateTime }}</div>
+ <div>UTC from Tenant: {{ utcDateTime }}</div>
+ <div>Formatted tenant from UTC: {{ tenantDateTimeFormatted }}</div>
+</div> -->

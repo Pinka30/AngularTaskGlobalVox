@@ -1,0 +1,12 @@
+{
+    "main": {
+        "title": "Angular Task",
+        "timezone": "Select Timezone",
+        "language": "Language",
+        "fullname": "Full Name",
+        "choosedate": "Choose a date",
+        "starttime": "Start time",
+        "endtime": "End time",
+        "submit": "Create Meeting"
+    }
+}

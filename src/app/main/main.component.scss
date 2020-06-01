@@ -1,0 +1,48 @@
+*{
+    font-size: 1rem;;
+}
+mat-form-field{
+    width: 200px;
+    margin: 10px;
+}
+
+.container{
+    text-align: center;
+}
+
+.form{
+    display: flex;
+    direction: column;
+    justify-content: space-between;
+}
+
+.time_field{
+    width:50px;
+}
+
+ul{
+    display: inline;
+}
+
+li{
+    display: inline;    
+    margin: 0.2rem;
+}
+
+li, button:focus{
+    outline:none;
+    border: none;
+}
+
+.lang_btn{
+    cursor: pointer;
+    background: none;
+    padding: 0;    
+    border: none;
+    color: grey;
+}
+
+.lang_btn:hover{
+    color: blue;
+}
+

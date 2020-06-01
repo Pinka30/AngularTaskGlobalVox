@@ -1,0 +1,12 @@
+{
+    "main": {
+        "title": "कोणीय कार्य",
+        "timezone": "समय क्षेत्र चुनें",
+        "language": "भाषा",
+        "fullname": "पूरा नाम",
+        "choosedate": "तिथि चुनें",
+        "starttime": "शुरू समय",
+        "endtime": "अंतिम समय",
+        "submit": "मीटिंग बनाएँ"
+    }
+}
